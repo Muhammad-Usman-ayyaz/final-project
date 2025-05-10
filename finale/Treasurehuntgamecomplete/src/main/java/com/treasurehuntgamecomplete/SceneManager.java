@@ -1,14 +1,17 @@
 package com.treasurehuntgamecomplete;
 
 import com.treasurehuntgamecomplete.challenges.*;
-import com.treasurehuntgamecomplete.game.Player;
 import com.treasurehuntgamecomplete.game.*;
 import com.treasurehuntgamecomplete.utilities.ChallengeGUI;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import utilities.Difficulty;
+
+import java.util.Objects;
 
 public class SceneManager {
     private static Stage primaryStage;
@@ -21,22 +24,75 @@ public class SceneManager {
     }
 
     public static void showMainMenu() {
-        VBox root = new VBox(10);
-        Label label = new Label("🌍 Welcome to the Adventure Game");
-        TextField nameField = new TextField();
-        nameField.setPromptText("Enter your name");
+        // Load the background image from resources
+        Image bgImage = new Image(SceneManager.class.getResource("/images/mainmenu.jpg").toExternalForm());
+        BackgroundImage backgroundImage = new BackgroundImage(
+                bgImage,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,
+                new BackgroundSize(800, 600, false, false, false, false)
+        );
 
-        Button startBtn = new Button("Start Adventure");
-        startBtn.setOnAction(e -> {
-            player = new Player(nameField.getText().isEmpty() ? "Adventurer" : nameField.getText());
-            setupGame();
-            showNextLocation();
+        // Use Pane instead of VBox for absolute positioning
+        Pane root = new Pane();
+        root.setBackground(new Background(backgroundImage));
+        root.setPrefSize(800, 600);
+
+        // Transparent button over "START" area in the image (adjust position as needed)
+        Button startButton = new Button();
+        startButton.setLayoutX(330); // X-position of "START" button in the image
+        startButton.setLayoutY(480); // Y-position of "START" button in the image
+        startButton.setPrefSize(160, 50); // Width and height matching image "START" button
+        startButton.setStyle("-fx-background-color: transparent");
+
+        startButton.setOnAction(e -> showCharacterAndDifficultyScene());
+
+        // Add the invisible button to the Pane
+        root.getChildren().add(startButton);
+
+        // Create scene and show
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Adventure Game - Main Menu");
+        primaryStage.setResizable(false);
+        primaryStage.show();
+    }
+
+
+    private static void showCharacterAndDifficultyScene() {
+//        Image bgImage = new Image(SceneManager.class.getResource("/images/mainmenu.jpg").toExternalForm());
+//        BackgroundImage backgroundImage = new BackgroundImage(
+//                bgImage,
+//                BackgroundRepeat.NO_REPEAT,
+//                BackgroundRepeat.NO_REPEAT,
+//                BackgroundPosition.CENTER,
+//                new BackgroundSize(800, 600, false, false, false, false)
+//        );
+        Pane root = new Pane();
+        root.setBackground(new Background(backgroundImage));
+
+        Label nameLabel = new Label("Enter Your Name:");
+        TextField nameField = new TextField();
+
+        Label charLabel = new Label("Choose Your Character:");
+        ComboBox<String> characterBox = new ComboBox<>();
+        characterBox.getItems().addAll("Warrior", "Wizard", "Explorer");
+
+        Label diffLabel = new Label("Select Difficulty:");
+        ComboBox<String> difficultyBox = new ComboBox<>();
+        difficultyBox.getItems().addAll("EASY", "MEDIUM", "HARD");
+
+        Button continueBtn = new Button("Continue");
+        continueBtn.setOnAction(e -> {
+            String name = nameField.getText().isEmpty() ? "Adventurer" : nameField.getText();
+            player = new Player(name);
+            setupGame(); // game setup
+            showNextLocation(); // begin game
         });
 
-        root.getChildren().addAll(label, nameField, startBtn);
-        primaryStage.setScene(new Scene(root, 400, 300));
-        primaryStage.setTitle("Adventure Game");
-        primaryStage.show();
+        root.getChildren().addAll(nameLabel, nameField, charLabel, characterBox, diffLabel, difficultyBox, continueBtn);
+        primaryStage.setScene(new Scene(root, 600, 400));
     }
 
     private static void setupGame() {
@@ -69,6 +125,8 @@ public class SceneManager {
 
         currentLocation = gameMap.getNextLocation();
         VBox root = new VBox(10);
+        root.setAlignment(Pos.CENTER);
+
         Label name = new Label("📍 Location: " + currentLocation.getName());
         Label desc = new Label(currentLocation.getDescription());
         Button doChallenge = new Button("Do Challenge");
@@ -86,13 +144,14 @@ public class SceneManager {
 
     private static void showGameOver() {
         VBox root = new VBox(10);
+        root.setAlignment(Pos.CENTER);
+
         Label label = new Label("🎮 Game Over!");
         Label score = new Label("Your final score: " + player.getScore());
         Button exitBtn = new Button("Exit");
 
         exitBtn.setOnAction(e -> primaryStage.close());
         root.getChildren().addAll(label, score, exitBtn);
-
         primaryStage.setScene(new Scene(root, 400, 300));
     }
 }

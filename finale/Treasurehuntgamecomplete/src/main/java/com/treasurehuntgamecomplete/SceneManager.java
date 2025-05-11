@@ -88,9 +88,8 @@ public class SceneManager {
         DifficultBtn.setPrefSize(200, 50);
         DifficultBtn.setStyle("-fx-background-color: transparent;");
 
-        continueBtn.setOnAction(e -> {      //lemda equation
-
-
+        DifficultBtn.setOnAction(e -> {      //lemda equation
+            showDifficulty();
         });
 
         // Add all components
@@ -158,4 +157,45 @@ public class SceneManager {
         root.getChildren().addAll(label, score, exitBtn);
         primaryStage.setScene(new Scene(root, 400, 300));
     }
+    private static void showDifficulty(){
+        Image bgImage = new Image(SceneManager.class.getResource("/images/Difficulty.jpg").toExternalForm());
+        BackgroundImage backgroundImage = new BackgroundImage(
+                bgImage,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,
+                new BackgroundSize(800, 600, false, false, false, false)
+        );
+
+        Pane root = new Pane();
+        root.setBackground(new Background(backgroundImage));
+        root.setPrefSize(800, 600);
+
+        // Continue Button over image's "Continue" label
+        Button easyBtn = new Button();
+        easyBtn.setLayoutX(305); // adjust based on image
+        easyBtn.setLayoutY(210); // adjust based on image
+        easyBtn.setPrefSize(200, 60);
+        easyBtn.setStyle("-fx-background-color: blue;");
+
+        Button mediumBtn = new Button();
+        mediumBtn.setLayoutX(305); // adjust based on image
+        mediumBtn.setLayoutY(300); // adjust based on image
+        mediumBtn.setPrefSize(200, 60);
+        mediumBtn.setStyle("-fx-background-color: blue;");
+
+        Button hardtBtn = new Button();
+        hardtBtn.setLayoutX(305); // adjust based on image
+        hardtBtn.setLayoutY(390); // adjust based on image
+        hardtBtn.setPrefSize(200, 60);
+        hardtBtn.setStyle("-fx-background-color: blue;");
+
+        root.getChildren().addAll(hardtBtn,easyBtn,mediumBtn);
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+
+    }
+
+
+
 }

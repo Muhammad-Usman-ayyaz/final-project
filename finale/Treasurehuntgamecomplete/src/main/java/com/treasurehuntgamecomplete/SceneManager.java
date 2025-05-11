@@ -61,38 +61,42 @@ public class SceneManager {
 
 
     private static void showCharacterAndDifficultyScene() {
-//        Image bgImage = new Image(SceneManager.class.getResource("/images/mainmenu.jpg").toExternalForm());
-//        BackgroundImage backgroundImage = new BackgroundImage(
-//                bgImage,
-//                BackgroundRepeat.NO_REPEAT,
-//                BackgroundRepeat.NO_REPEAT,
-//                BackgroundPosition.CENTER,
-//                new BackgroundSize(800, 600, false, false, false, false)
-//        );
+        // Load background image for character/difficulty screen
+        Image bgImage = new Image(SceneManager.class.getResource("/images/fchoice.jpg").toExternalForm());
+        BackgroundImage backgroundImage = new BackgroundImage(
+                bgImage,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,
+                new BackgroundSize(800, 600, false, false, false, false)
+        );
+
         Pane root = new Pane();
         root.setBackground(new Background(backgroundImage));
+        root.setPrefSize(800, 600);
+        
+        // Continue Button over image's "Continue" label
+        Button continueBtn = new Button();
+        continueBtn.setLayoutX(305); // adjust based on image
+        continueBtn.setLayoutY(340); // adjust based on image
+        continueBtn.setPrefSize(200, 50);
+        continueBtn.setStyle("-fx-background-color: transparent;");
 
-        Label nameLabel = new Label("Enter Your Name:");
-        TextField nameField = new TextField();
+        Button DifficultBtn = new Button();
+        DifficultBtn.setLayoutX(305); // adjust based on image
+        DifficultBtn.setLayoutY(240); // adjust based on image
+        DifficultBtn.setPrefSize(200, 50);
+        DifficultBtn.setStyle("-fx-background-color: transparent;");
 
-        Label charLabel = new Label("Choose Your Character:");
-        ComboBox<String> characterBox = new ComboBox<>();
-        characterBox.getItems().addAll("Warrior", "Wizard", "Explorer");
+        continueBtn.setOnAction(e -> {      //lemda equation
 
-        Label diffLabel = new Label("Select Difficulty:");
-        ComboBox<String> difficultyBox = new ComboBox<>();
-        difficultyBox.getItems().addAll("EASY", "MEDIUM", "HARD");
 
-        Button continueBtn = new Button("Continue");
-        continueBtn.setOnAction(e -> {
-            String name = nameField.getText().isEmpty() ? "Adventurer" : nameField.getText();
-            player = new Player(name);
-            setupGame(); // game setup
-            showNextLocation(); // begin game
         });
 
-        root.getChildren().addAll(nameLabel, nameField, charLabel, characterBox, diffLabel, difficultyBox, continueBtn);
-        primaryStage.setScene(new Scene(root, 600, 400));
+        // Add all components
+        root.getChildren().addAll(DifficultBtn,  continueBtn);
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
     }
 
     private static void setupGame() {

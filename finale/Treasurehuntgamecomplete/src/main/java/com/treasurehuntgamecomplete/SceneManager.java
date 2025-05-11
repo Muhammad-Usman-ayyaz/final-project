@@ -174,27 +174,104 @@ public class SceneManager {
         // Continue Button over image's "Continue" label
         Button easyBtn = new Button();
         easyBtn.setLayoutX(305); // adjust based on image
-        easyBtn.setLayoutY(210); // adjust based on image
+        easyBtn.setLayoutY(205); // adjust based on image
         easyBtn.setPrefSize(200, 60);
-        easyBtn.setStyle("-fx-background-color: blue;");
+        easyBtn.setStyle("-fx-background-color: transparent;");
 
         Button mediumBtn = new Button();
         mediumBtn.setLayoutX(305); // adjust based on image
         mediumBtn.setLayoutY(300); // adjust based on image
         mediumBtn.setPrefSize(200, 60);
-        mediumBtn.setStyle("-fx-background-color: blue;");
+        mediumBtn.setStyle("-fx-background-color: transparent;");
 
         Button hardtBtn = new Button();
         hardtBtn.setLayoutX(305); // adjust based on image
-        hardtBtn.setLayoutY(390); // adjust based on image
+        hardtBtn.setLayoutY(385); // adjust based on image
         hardtBtn.setPrefSize(200, 60);
-        hardtBtn.setStyle("-fx-background-color: blue;");
+        hardtBtn.setStyle("-fx-background-color: transparent;");
 
+        easyBtn.setOnAction(e -> {
+            showCharacter();
+        });
         root.getChildren().addAll(hardtBtn,easyBtn,mediumBtn);
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
 
     }
+    private static void showCharacter(){
+        Image bgImage = new Image(SceneManager.class.getResource("/images/characters.jpg").toExternalForm());
+        BackgroundImage backgroundImage = new BackgroundImage(
+                bgImage,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,
+                new BackgroundSize(800, 600, false, false, false, false)
+        );
+
+        Pane root = new Pane();
+        root.setBackground(new Background(backgroundImage));
+        root.setPrefSize(800, 600);
+
+        // Continue Button over image's "Continue" label
+        Button FemaleBtn = new Button();
+        FemaleBtn.setLayoutX(120); // adjust based on image
+        FemaleBtn.setLayoutY(490); // adjust based on image
+        FemaleBtn.setPrefSize(210, 60);
+        FemaleBtn.setStyle("-fx-background-color: transparent;");
+
+        Button maleBtn = new Button();
+        maleBtn.setLayoutX(470); // adjust based on image
+        maleBtn.setLayoutY(490); // adjust based on image
+        maleBtn.setPrefSize(210, 60);
+        maleBtn.setStyle("-fx-background-color: transparent;");
+
+
+
+        maleBtn.setOnAction(e -> {
+            Entername();
+        });
+
+        root.getChildren().addAll(FemaleBtn,maleBtn);
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+
+    }
+    private static void Entername(){
+        Image bgImage = new Image(SceneManager.class.getResource("/images/Name.jpg").toExternalForm());
+        BackgroundImage backgroundImage = new BackgroundImage(
+                bgImage,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,
+                new BackgroundSize(800, 600, false, false, false, false)
+        );
+
+        Pane root = new Pane();
+        root.setBackground(new Background(backgroundImage));
+        root.setPrefSize(800, 600);
+
+        TextField nameField = new TextField();
+        nameField.setPromptText("Enter Name");
+        nameField.setLayoutX(300);
+        nameField.setLayoutY(300);
+        nameField.setPrefWidth(200);
+
+        // Continue Button over image's "Continue" label
+        Button SubmitBtn = new Button();
+        SubmitBtn.setLayoutX(320); // adjust based on image
+        SubmitBtn.setLayoutY(420); // adjust based on image
+        SubmitBtn.setPrefSize(150, 50);
+        SubmitBtn.setStyle("-fx-background-color: blue;");
+
+
+
+
+        root.getChildren().addAll(SubmitBtn,nameField);
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+
+    }
+
 
 
 

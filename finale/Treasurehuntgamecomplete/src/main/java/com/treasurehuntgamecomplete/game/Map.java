@@ -23,9 +23,10 @@ public class Map {
     {
         if (currentIndex < locations.size() - 1)
         {
-            currentIndex++;
+
             return locations.get(currentIndex);
         }
+        currentIndex++;
         return null;  // No next location
     }
 

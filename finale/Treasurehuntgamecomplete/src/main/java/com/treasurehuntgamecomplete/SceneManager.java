@@ -18,6 +18,7 @@ public class SceneManager {
     private static Player player;
     private static Map gameMap;
     private static Location currentLocation;
+    private static Difficulty difficulty;
 
     public static void init(Stage stage) {
         primaryStage = stage;
@@ -89,8 +90,12 @@ public class SceneManager {
         DifficultBtn.setStyle("-fx-background-color: transparent;");
 
         DifficultBtn.setOnAction(e -> {      //lemda equation
-            showDifficulty();
+            showDifficultyfirst();
         });
+        continueBtn.setOnAction(e -> {      //lemda equation
+            showCharacterfirst();
+        });
+
 
         // Add all components
         root.getChildren().addAll(DifficultBtn,  continueBtn);
@@ -102,9 +107,9 @@ public class SceneManager {
         player.addItem("Calculator");
         player.addItem("Lucky Coin");
 
-        RiddleChallenge riddle = new RiddleChallenge("What has keys but can't open locks?", "Piano", 10, Difficulty.EASY);
-        MathChallenge math = new MathChallenge("5 + 3 * 2", 11, 15, Difficulty.MEDIUM);
-        MiniGameChallenge miniGame = new MiniGameChallenge("Guess Number", 20, Difficulty.HARD);
+        RiddleChallenge riddle = new RiddleChallenge("What has keys but can't open locks?", "Piano", 10, difficulty);
+        MathChallenge math = new MathChallenge("5 + 3 * 2", 11, 15, difficulty);
+        MiniGameChallenge miniGame = new MiniGameChallenge("Guess Number", 20, difficulty);
 
         riddle.setPlayer(player);
         math.setPlayer(player);
@@ -157,7 +162,7 @@ public class SceneManager {
         root.getChildren().addAll(label, score, exitBtn);
         primaryStage.setScene(new Scene(root, 400, 300));
     }
-    private static void showDifficulty(){
+    private static void showDifficultysecond(){
         Image bgImage = new Image(SceneManager.class.getResource("/images/Difficulty.jpg").toExternalForm());
         BackgroundImage backgroundImage = new BackgroundImage(
                 bgImage,
@@ -191,14 +196,120 @@ public class SceneManager {
         hardtBtn.setStyle("-fx-background-color: transparent;");
 
         easyBtn.setOnAction(e -> {
-            showCharacter();
+            difficulty=Difficulty.EASY;
+            Entername();
+
+        });
+        mediumBtn.setOnAction(e -> {
+            difficulty=Difficulty.MEDIUM;
+            Entername();
+        });
+        hardtBtn.setOnAction(e -> {
+            difficulty=Difficulty.HARD;
+           Entername();
+
         });
         root.getChildren().addAll(hardtBtn,easyBtn,mediumBtn);
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
 
     }
-    private static void showCharacter(){
+    private static void showDifficultyfirst(){
+        Image bgImage = new Image(SceneManager.class.getResource("/images/Difficulty.jpg").toExternalForm());
+        BackgroundImage backgroundImage = new BackgroundImage(
+                bgImage,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,
+                new BackgroundSize(800, 600, false, false, false, false)
+        );
+
+        Pane root = new Pane();
+        root.setBackground(new Background(backgroundImage));
+        root.setPrefSize(800, 600);
+
+        // Continue Button over image's "Continue" label
+        Button easyBtn = new Button();
+        easyBtn.setLayoutX(305); // adjust based on image
+        easyBtn.setLayoutY(205); // adjust based on image
+        easyBtn.setPrefSize(200, 60);
+        easyBtn.setStyle("-fx-background-color: transparent;");
+
+        Button mediumBtn = new Button();
+        mediumBtn.setLayoutX(305); // adjust based on image
+        mediumBtn.setLayoutY(300); // adjust based on image
+        mediumBtn.setPrefSize(200, 60);
+        mediumBtn.setStyle("-fx-background-color: transparent;");
+
+        Button hardtBtn = new Button();
+        hardtBtn.setLayoutX(305); // adjust based on image
+        hardtBtn.setLayoutY(385); // adjust based on image
+        hardtBtn.setPrefSize(200, 60);
+        hardtBtn.setStyle("-fx-background-color: transparent;");
+
+        easyBtn.setOnAction(e -> {
+            difficulty=Difficulty.EASY;
+            showCharactersecond();
+
+        });
+        mediumBtn.setOnAction(e -> {
+            difficulty=Difficulty.MEDIUM;
+            showCharactersecond();
+
+        });
+        hardtBtn.setOnAction(e -> {
+            difficulty=Difficulty.HARD;
+            showCharactersecond();
+
+        });
+        root.getChildren().addAll(hardtBtn,easyBtn,mediumBtn);
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+
+    }
+    private static void showCharacterfirst(){
+        Image bgImage = new Image(SceneManager.class.getResource("/images/characters.jpg").toExternalForm());
+        BackgroundImage backgroundImage = new BackgroundImage(
+                bgImage,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,
+                new BackgroundSize(800, 600, false, false, false, false)
+        );
+
+        Pane root = new Pane();
+        root.setBackground(new Background(backgroundImage));
+        root.setPrefSize(800, 600);
+
+        // Continue Button over image's "Continue" label
+        Button FemaleBtn = new Button();
+        FemaleBtn.setLayoutX(120); // adjust based on image
+        FemaleBtn.setLayoutY(490); // adjust based on image
+        FemaleBtn.setPrefSize(210, 60);
+        FemaleBtn.setStyle("-fx-background-color: transparent;");
+
+        Button maleBtn = new Button();
+        maleBtn.setLayoutX(470); // adjust based on image
+        maleBtn.setLayoutY(490); // adjust based on image
+        maleBtn.setPrefSize(210, 60);
+        maleBtn.setStyle("-fx-background-color: transparent;");
+
+
+
+        maleBtn.setOnAction(e -> {
+            showDifficultysecond();
+
+        });
+        FemaleBtn.setOnAction(e -> {
+            showDifficultysecond();
+        });
+
+        root.getChildren().addAll(FemaleBtn,maleBtn);
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+
+    }
+    private static void showCharactersecond(){
         Image bgImage = new Image(SceneManager.class.getResource("/images/characters.jpg").toExternalForm());
         BackgroundImage backgroundImage = new BackgroundImage(
                 bgImage,
@@ -229,6 +340,10 @@ public class SceneManager {
 
         maleBtn.setOnAction(e -> {
             Entername();
+
+        });
+        FemaleBtn.setOnAction(e -> {
+            Entername();
         });
 
         root.getChildren().addAll(FemaleBtn,maleBtn);
@@ -252,19 +367,26 @@ public class SceneManager {
 
         TextField nameField = new TextField();
         nameField.setPromptText("Enter Name");
-        nameField.setLayoutX(300);
+        nameField.setLayoutX(290);
         nameField.setLayoutY(300);
-        nameField.setPrefWidth(200);
+        nameField.setPrefWidth(240);
+        nameField.setPrefHeight(60);
+        nameField.setStyle("-fx-background-color: transparent;");
 
         // Continue Button over image's "Continue" label
         Button SubmitBtn = new Button();
-        SubmitBtn.setLayoutX(320); // adjust based on image
-        SubmitBtn.setLayoutY(420); // adjust based on image
-        SubmitBtn.setPrefSize(150, 50);
+        SubmitBtn.setLayoutX(350); // adjust based on image
+        SubmitBtn.setLayoutY(430); // adjust based on image
+        SubmitBtn.setPrefSize(100, 40);
         SubmitBtn.setStyle("-fx-background-color: blue;");
 
 
-
+        SubmitBtn.setOnAction(e -> {
+            String name = nameField.getText();
+            player = new Player(name);
+            setupGame();
+            showNextLocation();
+        });
 
         root.getChildren().addAll(SubmitBtn,nameField);
         Scene scene = new Scene(root);

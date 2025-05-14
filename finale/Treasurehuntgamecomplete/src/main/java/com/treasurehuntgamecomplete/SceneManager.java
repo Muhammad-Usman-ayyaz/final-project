@@ -19,6 +19,7 @@ public class SceneManager {
     private static Map gameMap;
     private static Location currentLocation;
     private static Difficulty difficulty;
+    private static int count=0;
 
     public static void init(Stage stage) {
         primaryStage = stage;
@@ -123,15 +124,23 @@ public class SceneManager {
         gameMap.addLocation(loc1);
         gameMap.addLocation(loc2);
         gameMap.addLocation(loc3);
+        Location current=gameMap.getCurrentLocation();
     }
+
+
 
     public static void showNextLocation() {
         if (!gameMap.hasNextLocation()) {
             showGameOver();
             return;
+        }if (count==0){
+            currentLocation = gameMap.getCurrentLocation();
         }
+        else {
+            currentLocation = gameMap.getNextLocation();
+        }
+        count++;
 
-        currentLocation = gameMap.getNextLocation();
         VBox root = new VBox(10);
         root.setAlignment(Pos.CENTER);
 
@@ -140,10 +149,16 @@ public class SceneManager {
         Button doChallenge = new Button("Do Challenge");
 
         doChallenge.setOnAction(e -> {
-            ChallengeGUI.display(currentLocation.getChallenge(), () -> {
-                player.increaseScore(currentLocation.getChallenge().getPoints());
-                showNextLocation();
-            });
+                ChallengeGUI.display(currentLocation.getChallenge(), () -> {
+                    player.increaseScore(currentLocation.getChallenge().getPoints());
+                    showNextLocation();
+                });
+
+
+
+
+
+
         });
 
         root.getChildren().addAll(name, desc, doChallenge);

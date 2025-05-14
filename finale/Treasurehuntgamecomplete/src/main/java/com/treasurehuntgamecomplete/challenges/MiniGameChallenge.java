@@ -1,5 +1,11 @@
 package com.treasurehuntgamecomplete.challenges;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import utilities.Difficulty;
+
 
 import java.util.Random;
 import java.util.Scanner;
@@ -40,5 +46,22 @@ public class MiniGameChallenge extends Challenge {
         if (!guessedCorrectly) {
             System.out.println("❌ The correct number was: " + num);
         }
+    }
+    public void play(Runnable onComplete) {
+        Stage stage = new Stage();
+        VBox root = new VBox(10);
+        Label label = new Label("🎮 Mini Game Coming Soon!");
+        Button doneBtn = new Button("Finish");
+
+        doneBtn.setOnAction(e -> {
+            this.points = getPoints(); // award points (optional)
+            stage.close();
+            onComplete.run();
+        });
+
+        root.getChildren().addAll(label, doneBtn);
+        stage.setScene(new Scene(root, 300, 200));
+        stage.setTitle("Mini Game");
+        stage.show();
     }
 }

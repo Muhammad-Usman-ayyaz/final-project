@@ -26,8 +26,10 @@ import javafx.stage.Stage;
                         int ans = Integer.parseInt(answerField.getText());
                         if (mc.checkAnswer(ans)) earned = mc.getPoints();
                     } catch (NumberFormatException ignored) {}
-                } else if (challenge instanceof MiniGameChallenge) {
-                    earned = 0; // GUI-based mini-games can be implemented later
+                } else if (challenge instanceof MiniGameChallenge mgc ) {
+                    stage.close();
+                    mgc.play(onComplete);
+                    return;
                 }
 
                 challenge.points = earned;

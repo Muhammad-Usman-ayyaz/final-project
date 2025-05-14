@@ -1,4 +1,7 @@
 package com.treasurehuntgamecomplete.game;
+
+import com.treasurehuntgamecomplete.game.Location;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +11,7 @@ public class Map {
 
     public Map() {
         locations = new ArrayList<>();
-        currentIndex = 0;  // The starting location
+        currentIndex = 0;
     }
 
     public void addLocation(Location loc) {
@@ -16,21 +19,21 @@ public class Map {
     }
 
     public Location getCurrentLocation() {
-        return locations.get(currentIndex);
-    }
-
-    public Location getNextLocation()
-    {
-        if (currentIndex < locations.size() - 1)
-        {
-
+        if (currentIndex < locations.size()) {
             return locations.get(currentIndex);
         }
-        currentIndex++;
-        return null;  // No next location
+        return null;
+    }
+
+    public Location getNextLocation() {
+        if (hasNextLocation()) {  // Ensure there is a next location before incrementing
+            currentIndex++;  // Increment to the next location
+            return locations.get(currentIndex);
+        }
+        return null;  // Return null if no next location
     }
 
     public boolean hasNextLocation() {
-        return currentIndex < locations.size() - 1;
+        return currentIndex + 1 < locations.size(); // Ensure there is another location to go to
     }
 }

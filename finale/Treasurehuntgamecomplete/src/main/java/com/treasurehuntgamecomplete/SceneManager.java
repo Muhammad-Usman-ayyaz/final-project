@@ -393,7 +393,7 @@ public class SceneManager {
         SubmitBtn.setLayoutX(350); // adjust based on image
         SubmitBtn.setLayoutY(430); // adjust based on image
         SubmitBtn.setPrefSize(100, 40);
-        SubmitBtn.setStyle("-fx-background-color: blue;");
+        SubmitBtn.setStyle("-fx-background-color: transparent;");
 
 
         SubmitBtn.setOnAction(e -> {

@@ -6,8 +6,10 @@ import com.treasurehuntgamecomplete.utilities.ChallengeGUI;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import utilities.Difficulty;
 
@@ -20,6 +22,7 @@ public class SceneManager {
     private static Location currentLocation;
     private static Difficulty difficulty;
     private static int count=0;
+    private static final DropShadow glowEffect = new DropShadow(20, Color.CYAN);
 
     public static void init(Stage stage) {
         primaryStage = stage;
@@ -141,29 +144,138 @@ public class SceneManager {
         }
         count++;
 
-        VBox root = new VBox(10);
-        root.setAlignment(Pos.CENTER);
+    }
+    private static void startFchallange(){
+            Image bgImage = new Image(SceneManager.class.getResource("/images/Firstlocation.jpg").toExternalForm());
+            BackgroundImage backgroundImage = new BackgroundImage(
+                    bgImage,
+                    BackgroundRepeat.NO_REPEAT,
+                    BackgroundRepeat.NO_REPEAT,
+                    BackgroundPosition.CENTER,
+                    new BackgroundSize(800, 600, false, false, false, false)
+            );
 
-        Label name = new Label("📍 Location: " + currentLocation.getName());
-        Label desc = new Label(currentLocation.getDescription());
-        Button doChallenge = new Button("Do Challenge");
+
+
+            Pane root = new Pane();
+            root.setBackground(new Background(backgroundImage));
+            root.setPrefSize(800, 600);
+
+            // Continue Button over image's "Continue" label
+            Button doChallenge = new Button(" Do  challange");
+            doChallenge.setLayoutX(305); // adjust based on imag
+            doChallenge.setLayoutY(500); // adjust based on image
+            doChallenge.setPrefSize(200, 60);
+            doChallenge.setStyle("-fx-background-color: #318431;");
+
+            doChallenge.setOnAction(e -> {
+                Fhype();
+            });
+            root.getChildren().addAll(doChallenge);
+            primaryStage.setScene(new Scene(root, 800, 600));
+        }
+    public static void startSchallange(){
+        Image bgImage = new Image(SceneManager.class.getResource("/images/Scndlocation.png").toExternalForm());
+        BackgroundImage backgroundImage = new BackgroundImage(
+                bgImage,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,
+                new BackgroundSize(800, 600, false, false, false, false)
+        );
+
+        Pane root = new Pane();
+        root.setBackground(new Background(backgroundImage));
+        root.setPrefSize(800, 600);
+
+        // Continue Button over image's "Continue" label
+        Button doChallenge = new Button(" Do  challange");
+        doChallenge.setLayoutX(305); // adjust based on imag
+        doChallenge.setLayoutY(500); // adjust based on image
+        doChallenge.setPrefSize(200, 60);
+        doChallenge.setStyle("-fx-background-color: #318431;");
 
         doChallenge.setOnAction(e -> {
-                ChallengeGUI.display(currentLocation.getChallenge(), () -> {
-                    player.increaseScore(currentLocation.getChallenge().getPoints());
-                    showNextLocation();
-                });
-
-
-
-
-
-
+            Shype();
         });
-
-        root.getChildren().addAll(name, desc, doChallenge);
-        primaryStage.setScene(new Scene(root, 400, 300));
+        root.getChildren().addAll(doChallenge);
+        primaryStage.setScene(new Scene(root, 800, 600));
     }
+
+    public static void Shype() {
+        Image bgImage = new Image(SceneManager.class.getResource("/images/FirstHype.jpg").toExternalForm());
+        BackgroundImage backgroundImage = new BackgroundImage(
+                bgImage,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,
+                new BackgroundSize(800, 600, false, false, false, false)
+        );
+
+
+
+        Pane root = new Pane();
+        root.setBackground(new Background(backgroundImage));
+        root.setPrefSize(800, 600);
+
+        // Continue Button over image's "Continue" label
+        Button doChallenge = new Button();
+        doChallenge.setLayoutX(305); // adjust based on imag
+        doChallenge.setLayoutY(500); // adjust based on image
+        doChallenge.setPrefSize(200, 60);
+        doChallenge.setStyle("-fx-background-color: transparent");
+
+        doChallenge.setOnAction(e -> {
+            ChallengeGUI.displayFirstlocation(currentLocation.getChallenge(), () -> {
+                player.increaseScore(currentLocation.getChallenge().getPoints());
+                showNextLocation();
+
+            });
+        });
+        root.getChildren().addAll(doChallenge);
+        primaryStage.setScene(new Scene(root, 800, 600));
+    }
+
+
+    private static void Fhype(){
+        Image bgImage = new Image(SceneManager.class.getResource("/images/FirstHype.jpg").toExternalForm());
+        BackgroundImage backgroundImage = new BackgroundImage(
+                bgImage,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,
+                new BackgroundSize(800, 600, false, false, false, false)
+        );
+
+
+
+        Pane root = new Pane();
+        root.setBackground(new Background(backgroundImage));
+        root.setPrefSize(800, 600);
+
+        // Continue Button over image's "Continue" label
+        Button doChallenge = new Button();
+        doChallenge.setLayoutX(305); // adjust based on imag
+        doChallenge.setLayoutY(500); // adjust based on image
+        doChallenge.setPrefSize(200, 60);
+        doChallenge.setStyle("-fx-background-color: transparent");
+
+        doChallenge.setOnAction(e -> {
+            ChallengeGUI.displayFirstlocation(currentLocation.getChallenge(), () -> {
+                player.increaseScore(currentLocation.getChallenge().getPoints());
+                showNextLocation();
+
+            });
+        });
+        root.getChildren().addAll(doChallenge);
+        primaryStage.setScene(new Scene(root, 800, 600));
+    }
+
+
+
+
+
+
 
     private static void showGameOver() {
         VBox root = new VBox(10);
@@ -291,30 +403,36 @@ public class SceneManager {
                 BackgroundPosition.CENTER,
                 new BackgroundSize(800, 600, false, false, false, false)
         );
-
+        DropShadow shadow = new DropShadow();
+        shadow.setColor(Color.CYAN);
+        shadow.setRadius(20);
         Pane root = new Pane();
         root.setBackground(new Background(backgroundImage));
         root.setPrefSize(800, 600);
 
         // Continue Button over image's "Continue" label
         Button FemaleBtn = new Button();
-        FemaleBtn.setLayoutX(120); // adjust based on image
-        FemaleBtn.setLayoutY(490); // adjust based on image
-        FemaleBtn.setPrefSize(210, 60);
-        FemaleBtn.setStyle("-fx-background-color: transparent;");
+        FemaleBtn.setLayoutX(97); // adjust based on image
+        FemaleBtn.setLayoutY(140); // adjust based on image
+        FemaleBtn.setPrefSize(250, 380);
+        FemaleBtn.setStyle("-fx-background-color: rgba(255, 255, 255, 0); -fx-border-color: transparent;");
 
         Button maleBtn = new Button();
-        maleBtn.setLayoutX(470); // adjust based on image
-        maleBtn.setLayoutY(490); // adjust based on image
-        maleBtn.setPrefSize(210, 60);
-        maleBtn.setStyle("-fx-background-color: transparent;");
+        maleBtn.setLayoutX(450); // adjust based on image
+        maleBtn.setLayoutY(140); // adjust based on image
+        maleBtn.setPrefSize(250, 380);
+        maleBtn.setStyle("-fx-background-color: rgba(255, 255, 255, 0); -fx-border-color: transparent;");;
 
 
 
+        maleBtn.setOnMouseEntered( e -> maleBtn.setEffect(shadow) );
+        maleBtn.setOnMouseExited(e -> maleBtn.setEffect(null));
         maleBtn.setOnAction(e -> {
             showDifficultysecond();
 
         });
+        FemaleBtn.setOnMouseEntered( e -> FemaleBtn.setEffect(shadow) );
+        FemaleBtn.setOnMouseExited(e -> FemaleBtn.setEffect(null));
         FemaleBtn.setOnAction(e -> {
             showDifficultysecond();
         });
@@ -338,18 +456,17 @@ public class SceneManager {
         root.setBackground(new Background(backgroundImage));
         root.setPrefSize(800, 600);
 
-        // Continue Button over image's "Continue" label
         Button FemaleBtn = new Button();
-        FemaleBtn.setLayoutX(120); // adjust based on image
-        FemaleBtn.setLayoutY(490); // adjust based on image
-        FemaleBtn.setPrefSize(210, 60);
-        FemaleBtn.setStyle("-fx-background-color: transparent;");
+        FemaleBtn.setLayoutX(97); // adjust based on image
+        FemaleBtn.setLayoutY(140); // adjust based on image
+        FemaleBtn.setPrefSize(250, 380);
+        FemaleBtn.setStyle("-fx-background-color: rgba(255, 255, 255, 0); -fx-border-color: transparent;");
 
         Button maleBtn = new Button();
-        maleBtn.setLayoutX(470); // adjust based on image
-        maleBtn.setLayoutY(490); // adjust based on image
-        maleBtn.setPrefSize(210, 60);
-        maleBtn.setStyle("-fx-background-color: transparent;");
+        maleBtn.setLayoutX(450); // adjust based on image
+        maleBtn.setLayoutY(140); // adjust based on image
+        maleBtn.setPrefSize(250, 380);
+        maleBtn.setStyle("-fx-background-color: rgba(255, 255, 255, 0); -fx-border-color: transparent;");;
 
 
 
@@ -401,6 +518,7 @@ public class SceneManager {
             player = new Player(name);
             setupGame();
             showNextLocation();
+            startFchallange();
         });
 
         root.getChildren().addAll(SubmitBtn,nameField);

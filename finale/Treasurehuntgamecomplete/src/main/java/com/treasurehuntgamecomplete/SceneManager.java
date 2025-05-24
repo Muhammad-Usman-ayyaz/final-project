@@ -270,6 +270,19 @@ public class SceneManager {
         root.getChildren().addAll(doChallenge);
         primaryStage.setScene(new Scene(root, 800, 600));
     }
+    public static void startTchallange(){
+        Image bgImage = new Image(SceneManager.class.getResource("/images/Scndlocation.png").toExternalForm());
+        BackgroundImage backgroundImage = new BackgroundImage(
+                bgImage,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,
+                new BackgroundSize(800, 600, false, false, false, false)
+        );
+
+        Pane root = new Pane();
+        root.setBackground(new Background(backgroundImage));
+        root.setPrefSize(800, 600);
 
 
 

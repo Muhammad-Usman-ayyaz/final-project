@@ -203,7 +203,7 @@ public class SceneManager {
     }
 
     public static void Shype() {
-        Image bgImage = new Image(SceneManager.class.getResource("/images/FirstHype.jpg").toExternalForm());
+        Image bgImage = new Image(SceneManager.class.getResource("/images/SHype.png").toExternalForm());
         BackgroundImage backgroundImage = new BackgroundImage(
                 bgImage,
                 BackgroundRepeat.NO_REPEAT,
@@ -226,7 +226,7 @@ public class SceneManager {
         doChallenge.setStyle("-fx-background-color: transparent");
 
         doChallenge.setOnAction(e -> {
-            ChallengeGUI.displayFirstlocation(currentLocation.getChallenge(), () -> {
+            ChallengeGUI.displaySecondlocation(currentLocation.getChallenge(), () -> {
                 player.increaseScore(currentLocation.getChallenge().getPoints());
                 showNextLocation();
 
@@ -284,11 +284,52 @@ public class SceneManager {
         root.setBackground(new Background(backgroundImage));
         root.setPrefSize(800, 600);
 
+        // Continue Button over image's "Continue" label
+        Button doChallenge = new Button(" Do  challange");
+        doChallenge.setLayoutX(305); // adjust based on imag
+        doChallenge.setLayoutY(500); // adjust based on image
+        doChallenge.setPrefSize(200, 60);
+        doChallenge.setStyle("-fx-background-color: #318431;");
+
+        doChallenge.setOnAction(e -> {
+            Shype();
+        });
+        root.getChildren().addAll(doChallenge);
+        primaryStage.setScene(new Scene(root, 800, 600));
+    }
+    private static void Thype(){
+        Image bgImage = new Image(SceneManager.class.getResource("/images/ThirdHype.jpg").toExternalForm());
+        BackgroundImage backgroundImage = new BackgroundImage(
+                bgImage,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,
+                new BackgroundSize(800, 600, false, false, false, false)
+        );
 
 
 
+        Pane root = new Pane();
+        root.setBackground(new Background(backgroundImage));
+        root.setPrefSize(800, 600);
 
+        // Continue Button over image's "Continue" label
+        Button doChallenge = new Button();
+        doChallenge.setLayoutX(305); // adjust based on imag
+        doChallenge.setLayoutY(500); // adjust based on image
+        doChallenge.setPrefSize(200, 60);
+        doChallenge.setStyle("-fx-background-color: transparent");
 
+        doChallenge.setOnAction(e -> {
+            ChallengeGUI.displayThirdlocation(currentLocation.getChallenge(), () -> {
+                player.increaseScore(currentLocation.getChallenge().getPoints());
+                showNextLocation();
+
+            });
+        });
+        root.getChildren().addAll(doChallenge);
+        primaryStage.setScene(new Scene(root, 800, 600));
+    }
 
     private static void showGameOver() {
         VBox root = new VBox(10);

@@ -79,7 +79,7 @@ public class SceneManager {
         Pane root = new Pane();
         root.setBackground(new Background(backgroundImage));
         root.setPrefSize(800, 600);
-        
+
         // Continue Button over image's "Continue" label
         Button continueBtn = new Button();
         continueBtn.setLayoutX(305); // adjust based on image
@@ -146,34 +146,34 @@ public class SceneManager {
 
     }
     private static void startFchallange(){
-            Image bgImage = new Image(SceneManager.class.getResource("/images/Firstlocation.jpg").toExternalForm());
-            BackgroundImage backgroundImage = new BackgroundImage(
-                    bgImage,
-                    BackgroundRepeat.NO_REPEAT,
-                    BackgroundRepeat.NO_REPEAT,
-                    BackgroundPosition.CENTER,
-                    new BackgroundSize(800, 600, false, false, false, false)
-            );
+        Image bgImage = new Image(SceneManager.class.getResource("/images/Firstlocation.jpg").toExternalForm());
+        BackgroundImage backgroundImage = new BackgroundImage(
+                bgImage,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,
+                new BackgroundSize(800, 600, false, false, false, false)
+        );
 
 
 
-            Pane root = new Pane();
-            root.setBackground(new Background(backgroundImage));
-            root.setPrefSize(800, 600);
+        Pane root = new Pane();
+        root.setBackground(new Background(backgroundImage));
+        root.setPrefSize(800, 600);
 
-            // Continue Button over image's "Continue" label
-            Button doChallenge = new Button(" Do  challange");
-            doChallenge.setLayoutX(305); // adjust based on imag
-            doChallenge.setLayoutY(500); // adjust based on image
-            doChallenge.setPrefSize(200, 60);
-            doChallenge.setStyle("-fx-background-color: #318431;");
+        // Continue Button over image's "Continue" label
+        Button doChallenge = new Button(" Do  challange");
+        doChallenge.setLayoutX(305); // adjust based on imag
+        doChallenge.setLayoutY(500); // adjust based on image
+        doChallenge.setPrefSize(200, 60);
+        doChallenge.setStyle("-fx-background-color: #318431;");
 
-            doChallenge.setOnAction(e -> {
-                Fhype();
-            });
-            root.getChildren().addAll(doChallenge);
-            primaryStage.setScene(new Scene(root, 800, 600));
-        }
+        doChallenge.setOnAction(e -> {
+            Fhype();
+        });
+        root.getChildren().addAll(doChallenge);
+        primaryStage.setScene(new Scene(root, 800, 600));
+    }
     public static void startSchallange(){
         Image bgImage = new Image(SceneManager.class.getResource("/images/Scndlocation.png").toExternalForm());
         BackgroundImage backgroundImage = new BackgroundImage(
@@ -387,7 +387,7 @@ public class SceneManager {
         });
         hardtBtn.setOnAction(e -> {
             difficulty=Difficulty.HARD;
-           Entername();
+            Entername();
 
         });
         root.getChildren().addAll(hardtBtn,easyBtn,mediumBtn);

@@ -12,31 +12,19 @@ public class MathChallenge extends Challenge {
         this.solution = solution;
     }
 
-    @Override
-    public void askQuestion(Scanner scanner) {
-        System.out.println("Solve: " + question);
-        System.out.print("Enter your answer: ");
-        int userAnswer = scanner.nextInt();
-
-        // Check if the player has a "Calculator" item that gives them a hint
-        if (userAnswer != solution && userAnswer == -1 && playerHasCalculator()) {
-            System.out.println("You used your Calculator! Here's a hint: The answer is greater than 10.");
-            System.out.print("Try again: ");
-            userAnswer = scanner.nextInt();
-        }
-
-        if (checkAnswer(userAnswer)) {
-            System.out.println("✅ Correct! You earned " + points + " points.");
-        } else {
-            System.out.println("❌ Incorrect! The correct answer was: " + solution);
-        }
-    }
-
-    private boolean playerHasCalculator() {
-        return this.getPlayer().hasItem("Calculator");  // Check if player has the item
-    }
-
     public boolean checkAnswer(int userAnswer) {
         return userAnswer == solution;
+    }
+
+    public String getHint() {
+        if (getPlayer().hasItem("Calculator")) {
+            return "Hint: The answer is close to " + (solution + 2);
+        }
+        return null;
+    }
+
+    @Override
+    public void askQuestion(Scanner scanner) {
+        System.out.println("Riddle: " + question);
     }
 }

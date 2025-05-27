@@ -8,25 +8,38 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import com.treasurehuntgamecomplete.SceneManager;
 
-import static com.treasurehuntgamecomplete.SceneManager.startSchallange;
-import static com.treasurehuntgamecomplete.SceneManager.startTchallange;
+import static com.treasurehuntgamecomplete.SceneManager.*;
 
 public class ChallengeGUI {
 
+
     public static void displayFirstlocation(Challenge challenge, Runnable onComplete) {
-        Stage stage = new Stage();
-        Image bgImage = new Image(SceneManager.class.getResource("/images/Firstq.jpg").toExternalForm());
-        BackgroundImage backgroundImage = new BackgroundImage(
+        BackgroundImage backgroundImage;
+        if(gender){
+            Image bgImage = new Image(SceneManager.class.getResource("/images/Firstq.jpg").toExternalForm());
+            backgroundImage = new BackgroundImage(
+                    bgImage,
+                    BackgroundRepeat.NO_REPEAT,
+                    BackgroundRepeat.NO_REPEAT,
+                    BackgroundPosition.CENTER,
+                    new BackgroundSize(800, 600, false, false, false, false)
+            );
+        }
+        else {
+        Image bgImage = new Image(SceneManager.class.getResource("/images/female.jpg").toExternalForm());
+            backgroundImage= new BackgroundImage(
                 bgImage,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.CENTER,
                 new BackgroundSize(800, 600, false, false, false, false)
         );
+        }
 
 
 
         Pane root = new Pane();
+
         root.setBackground(new Background(backgroundImage));
         root.setPrefSize(800, 600);
 
@@ -50,7 +63,7 @@ public class ChallengeGUI {
                     if (mc.checkAnswer(ans)) earned = mc.getPoints();
                 } catch (NumberFormatException ignored) {}
             } else if (challenge instanceof MiniGameChallenge mgc ) {
-                stage.close();
+
                 mgc.play(onComplete);
                 return;
             }
@@ -61,13 +74,23 @@ public class ChallengeGUI {
         });
 
         root.getChildren().addAll(qLabel, answerField, submitBtn);
-        stage.setScene(new Scene(root, 800, 600));
-        stage.setTitle("Challenge");
-        stage.show();
+        primaryStage.setScene(new Scene(root, 800, 600));
+        primaryStage.setTitle("Challenge 1");
+        primaryStage.show();
     }
     public static void displaySecondlocation(Challenge challenge, Runnable onComplete) {
-        Stage stage = new Stage();
-        Image bgImage = new Image(SceneManager.class.getResource("/images/Firstq.jpg").toExternalForm());
+
+        if(gender){
+            Image bgImage = new Image(SceneManager.class.getResource("/images/castle game male.jpg").toExternalForm());
+            BackgroundImage backgroundImage = new BackgroundImage(
+                    bgImage,
+                    BackgroundRepeat.NO_REPEAT,
+                    BackgroundRepeat.NO_REPEAT,
+                    BackgroundPosition.CENTER,
+                    new BackgroundSize(800, 600, false, false, false, false)
+            );
+        }
+        Image bgImage = new Image(SceneManager.class.getResource("/images/castle game female.jpg").toExternalForm());
         BackgroundImage backgroundImage = new BackgroundImage(
                 bgImage,
                 BackgroundRepeat.NO_REPEAT,
@@ -101,27 +124,35 @@ public class ChallengeGUI {
                     if (mc.checkAnswer(ans)) earned = mc.getPoints();
                 } catch (NumberFormatException ignored) {}
             } else if (challenge instanceof MiniGameChallenge mgc ) {
-                stage.close();
+
                 mgc.play(onComplete);
                 return;
             }
 
             challenge.points = earned;
             onComplete.run();
-            stage.close();
             startTchallange();
         });
 
         root.getChildren().addAll(qLabel, answerField, submitBtn);
-        stage.setScene(new Scene(root, 800, 600));
-        stage.setTitle("Challenge");
-        stage.show();
+        primaryStage.setScene(new Scene(root, 800, 600));
+        primaryStage.setTitle("Challenge 2");
+        primaryStage.show();
     }
 
 
     public static void displayThirdlocation(Challenge challenge, Runnable onComplete) {
-        Stage stage = new Stage();
-        Image bgImage = new Image(SceneManager.class.getResource("/images/Firstq.jpg").toExternalForm());
+        if(gender){
+            Image bgImage = new Image(SceneManager.class.getResource("/images/cave game male.jpg").toExternalForm());
+            BackgroundImage backgroundImage = new BackgroundImage(
+                    bgImage,
+                    BackgroundRepeat.NO_REPEAT,
+                    BackgroundRepeat.NO_REPEAT,
+                    BackgroundPosition.CENTER,
+                    new BackgroundSize(800, 600, false, false, false, false)
+            );
+        }
+        Image bgImage = new Image(SceneManager.class.getResource("/images/cave games female.jpg").toExternalForm());
         BackgroundImage backgroundImage = new BackgroundImage(
                 bgImage,
                 BackgroundRepeat.NO_REPEAT,
@@ -156,20 +187,17 @@ public class ChallengeGUI {
                     if (mc.checkAnswer(ans)) earned = mc.getPoints();
                 } catch (NumberFormatException ignored) {}
             } else if (challenge instanceof MiniGameChallenge mgc ) {
-                stage.close();
                 mgc.play(onComplete);
                 return;
             }
 
             challenge.points = earned;
             onComplete.run();
-            stage.close();
         });
 
         root.getChildren().addAll(qLabel, answerField, submitBtn);
-        stage.setScene(new Scene(root, 800, 600));
-        stage.setTitle("Challenge");
-        stage.show();
-        stage.close();
+        primaryStage.setScene(new Scene(root, 800, 600));
+        primaryStage.setTitle("Challenge 3");
+        primaryStage.show();
     }
 }

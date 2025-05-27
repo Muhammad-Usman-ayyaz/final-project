@@ -15,14 +15,18 @@ import utilities.Difficulty;
 
 import java.util.Objects;
 
+import static com.treasurehuntgamecomplete.utilities.ChallengeGUI.displayFirstlocation;
+import static com.treasurehuntgamecomplete.utilities.ChallengeGUI.displayThirdlocation;
+
 public class SceneManager {
-    private static Stage primaryStage;
+    public static Stage primaryStage;
     private static Player player;
     private static Map gameMap;
     private static Location currentLocation;
     private static Difficulty difficulty;
     private static int count=0;
     private static final DropShadow glowEffect = new DropShadow(20, Color.CYAN);
+    public static boolean gender;
 
     public static void init(Stage stage) {
         primaryStage = stage;
@@ -230,6 +234,7 @@ public class SceneManager {
                 player.increaseScore(currentLocation.getChallenge().getPoints());
                 showNextLocation();
 
+
             });
         });
         root.getChildren().addAll(doChallenge);
@@ -271,7 +276,7 @@ public class SceneManager {
         primaryStage.setScene(new Scene(root, 800, 600));
     }
     public static void startTchallange(){
-        Image bgImage = new Image(SceneManager.class.getResource("/images/Scndlocation.png").toExternalForm());
+        Image bgImage = new Image(SceneManager.class.getResource("/images/cave enter.jpg").toExternalForm());
         BackgroundImage backgroundImage = new BackgroundImage(
                 bgImage,
                 BackgroundRepeat.NO_REPEAT,
@@ -292,13 +297,13 @@ public class SceneManager {
         doChallenge.setStyle("-fx-background-color: #318431;");
 
         doChallenge.setOnAction(e -> {
-            Shype();
+            Thype();
         });
         root.getChildren().addAll(doChallenge);
         primaryStage.setScene(new Scene(root, 800, 600));
     }
-    private static void Thype(){
-        Image bgImage = new Image(SceneManager.class.getResource("/images/ThirdHype.jpg").toExternalForm());
+    public static void Thype() {
+        Image bgImage = new Image(SceneManager.class.getResource("/images/cave description.jpg").toExternalForm());
         BackgroundImage backgroundImage = new BackgroundImage(
                 bgImage,
                 BackgroundRepeat.NO_REPEAT,
@@ -324,6 +329,7 @@ public class SceneManager {
             ChallengeGUI.displayThirdlocation(currentLocation.getChallenge(), () -> {
                 player.increaseScore(currentLocation.getChallenge().getPoints());
                 showNextLocation();
+
 
             });
         });
@@ -483,6 +489,7 @@ public class SceneManager {
         maleBtn.setOnMouseExited(e -> maleBtn.setEffect(null));
         maleBtn.setOnAction(e -> {
             showDifficultysecond();
+            gender=true;
 
         });
         FemaleBtn.setOnMouseEntered( e -> FemaleBtn.setEffect(shadow) );
@@ -526,9 +533,11 @@ public class SceneManager {
 
         maleBtn.setOnAction(e -> {
             Entername();
+            gender=true;
 
         });
         FemaleBtn.setOnAction(e -> {
+
             Entername();
         });
 

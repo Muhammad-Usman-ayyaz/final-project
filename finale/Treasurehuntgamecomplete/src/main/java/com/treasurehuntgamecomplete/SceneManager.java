@@ -34,7 +34,7 @@ public class SceneManager {
 
     public static void showMainMenu() {
         // Load the background image from resources
-        Image bgImage = new Image(SceneManager.class.getResource("/images/mainmenu.jpg").toExternalForm());
+        Image bgImage = new Image(SceneManager.class.getResource("/images/start page.jpg").toExternalForm());
         BackgroundImage backgroundImage = new BackgroundImage(
                 bgImage,
                 BackgroundRepeat.NO_REPEAT,
@@ -150,7 +150,7 @@ public class SceneManager {
 
     }
     private static void startFchallange(){
-        Image bgImage = new Image(SceneManager.class.getResource("/images/Firstlocation.jpg").toExternalForm());
+        Image bgImage = new Image(SceneManager.class.getResource("/images/entered forest.jpg").toExternalForm());
         BackgroundImage backgroundImage = new BackgroundImage(
                 bgImage,
                 BackgroundRepeat.NO_REPEAT,
@@ -170,7 +170,7 @@ public class SceneManager {
         doChallenge.setLayoutX(305); // adjust based on imag
         doChallenge.setLayoutY(500); // adjust based on image
         doChallenge.setPrefSize(200, 60);
-        doChallenge.setStyle("-fx-background-color: #318431;");
+        doChallenge.setStyle("-fx-background-color: #2c47a1;");
 
         doChallenge.setOnAction(e -> {
             Fhype();
@@ -179,7 +179,7 @@ public class SceneManager {
         primaryStage.setScene(new Scene(root, 800, 600));
     }
     public static void startSchallange(){
-        Image bgImage = new Image(SceneManager.class.getResource("/images/Scndlocation.png").toExternalForm());
+        Image bgImage = new Image(SceneManager.class.getResource("/images/entered castle.jpg").toExternalForm());
         BackgroundImage backgroundImage = new BackgroundImage(
                 bgImage,
                 BackgroundRepeat.NO_REPEAT,
@@ -207,7 +207,7 @@ public class SceneManager {
     }
 
     public static void Shype() {
-        Image bgImage = new Image(SceneManager.class.getResource("/images/SHype.png").toExternalForm());
+        Image bgImage = new Image(SceneManager.class.getResource("/images/castle description.jpg").toExternalForm());
         BackgroundImage backgroundImage = new BackgroundImage(
                 bgImage,
                 BackgroundRepeat.NO_REPEAT,
@@ -243,7 +243,7 @@ public class SceneManager {
 
 
     private static void Fhype(){
-        Image bgImage = new Image(SceneManager.class.getResource("/images/FirstHype.jpg").toExternalForm());
+        Image bgImage = new Image(SceneManager.class.getResource("/images/forest description.jpg").toExternalForm());
         BackgroundImage backgroundImage = new BackgroundImage(
                 bgImage,
                 BackgroundRepeat.NO_REPEAT,
@@ -338,19 +338,39 @@ public class SceneManager {
     }
 
     private static void showGameOver() {
-        VBox root = new VBox(10);
-        root.setAlignment(Pos.CENTER);
+        Image bgImage = new Image(SceneManager.class.getResource("/images/game over.jpg").toExternalForm());
+        BackgroundImage backgroundImage = new BackgroundImage(
+                bgImage,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,
+                new BackgroundSize(800, 600, false, false, false, false)
+        );
 
-        Label label = new Label("🎮 Game Over!");
+
+
+        Pane root = new Pane();
+        root.setBackground(new Background(backgroundImage));
+        root.setPrefSize(800, 600);
         Label score = new Label("Your final score: " + player.getScore());
-        Button exitBtn = new Button("Exit");
+
+        // Continue Button over image's "Continue" label
+        Button exitBtn = new Button();
+        exitBtn.setLayoutX(305); // adjust based on imag
+        exitBtn.setLayoutY(500);
+        exitBtn.setPrefSize(200,200);// adjust based on image
+
+
 
         exitBtn.setOnAction(e -> primaryStage.close());
-        root.getChildren().addAll(label, score, exitBtn);
-        primaryStage.setScene(new Scene(root, 400, 300));
+        root.getChildren().addAll( score, exitBtn);
+        primaryStage.setScene(new Scene(root, 800, 600));
+
+
+
     }
     private static void showDifficultysecond(){
-        Image bgImage = new Image(SceneManager.class.getResource("/images/Difficulty.jpg").toExternalForm());
+        Image bgImage = new Image(SceneManager.class.getResource("/images/difficulty.jpg").toExternalForm());
         BackgroundImage backgroundImage = new BackgroundImage(
                 bgImage,
                 BackgroundRepeat.NO_REPEAT,
@@ -402,7 +422,7 @@ public class SceneManager {
 
     }
     private static void showDifficultyfirst(){
-        Image bgImage = new Image(SceneManager.class.getResource("/images/Difficulty.jpg").toExternalForm());
+        Image bgImage = new Image(SceneManager.class.getResource("/images/difficulty.jpg").toExternalForm());
         BackgroundImage backgroundImage = new BackgroundImage(
                 bgImage,
                 BackgroundRepeat.NO_REPEAT,
@@ -455,7 +475,7 @@ public class SceneManager {
 
     }
     private static void showCharacterfirst(){
-        Image bgImage = new Image(SceneManager.class.getResource("/images/characters.jpg").toExternalForm());
+        Image bgImage = new Image(SceneManager.class.getResource("/images/5 Select Character.jpg").toExternalForm());
         BackgroundImage backgroundImage = new BackgroundImage(
                 bgImage,
                 BackgroundRepeat.NO_REPEAT,
@@ -504,7 +524,7 @@ public class SceneManager {
 
     }
     private static void showCharactersecond(){
-        Image bgImage = new Image(SceneManager.class.getResource("/images/characters.jpg").toExternalForm());
+        Image bgImage = new Image(SceneManager.class.getResource("/images/5 Select Character").toExternalForm());
         BackgroundImage backgroundImage = new BackgroundImage(
                 bgImage,
                 BackgroundRepeat.NO_REPEAT,
@@ -547,7 +567,7 @@ public class SceneManager {
 
     }
     private static void Entername(){
-        Image bgImage = new Image(SceneManager.class.getResource("/images/Name.jpg").toExternalForm());
+        Image bgImage = new Image(SceneManager.class.getResource("/images/enter name.jpg").toExternalForm());
         BackgroundImage backgroundImage = new BackgroundImage(
                 bgImage,
                 BackgroundRepeat.NO_REPEAT,

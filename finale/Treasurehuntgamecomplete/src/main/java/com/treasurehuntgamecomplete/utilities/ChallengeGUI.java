@@ -16,7 +16,7 @@ public class ChallengeGUI {
     public static void displayFirstlocation(Challenge challenge, Runnable onComplete) {
         BackgroundImage backgroundImage;
         if(gender){
-            Image bgImage = new Image(SceneManager.class.getResource("/images/Firstq.jpg").toExternalForm());
+            Image bgImage = new Image(SceneManager.class.getResource("/images/8.1 Riddle guy.jpg").toExternalForm());
             backgroundImage = new BackgroundImage(
                     bgImage,
                     BackgroundRepeat.NO_REPEAT,
@@ -26,7 +26,7 @@ public class ChallengeGUI {
             );
         }
         else {
-        Image bgImage = new Image(SceneManager.class.getResource("/images/female.jpg").toExternalForm());
+        Image bgImage = new Image(SceneManager.class.getResource("/images/8.2 Riddle girl.jpg").toExternalForm());
             backgroundImage= new BackgroundImage(
                 bgImage,
                 BackgroundRepeat.NO_REPEAT,
